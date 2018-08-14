@@ -23,7 +23,7 @@ void append(int d, int flg){
 		head = p;
 	}
 	else{
-		p->left = head;
+		p->left = tail;
 		p->right=NULL;
 		tail->right = p;
 		tail = p;
