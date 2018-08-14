@@ -30,11 +30,9 @@ int search(int d){
 	return pos;
 }
 
-void traverse(){
-	//traverses the list from head to tail
-}
-void rev_traverse(){
-	//traverses the list from tail to head
+void traverse(int flg){
+	//traverses the list from head to tail if flg=0
+	//traverses the list from tail to head if flg=1
 }
 
 int main(){
@@ -71,10 +69,10 @@ int main(){
 				int pos = search(d);
 				break;
 			case 5:
-				traverse();
+				traverse(0);
 				break;
 			case 6:
-				rev_traverse();
+				traverse(1);
 				break;
 			case 7:
 				exit=0;
