@@ -54,6 +54,22 @@ void insert(int d, int pos){
 
 void delete(int d){
 	//finds and deletes d from the list
+	if(length==0)
+	{
+		printf("List is empty can not delete\n");
+	}
+	else
+	{
+		node* temp;
+		temp=head;
+		do
+		{
+			if(
+			
+		}while();
+	}
+	
+	
 }
 
 int search(int d){
