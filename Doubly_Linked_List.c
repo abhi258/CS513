@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
+#include<stdlib.h>
 
 typedef struct node{
 	int d;
@@ -54,17 +55,104 @@ void insert(int d, int pos){
 
 void delete(int d){
 	//finds and deletes d from the list
+	node* temp;
+	temp=head;
+	
+	if(temp->d==d)
+	{
+		head=head->right;
+		printf("element deleted\n");
+		free(temp);
+		temp=null;
+	}
+	else
+	{
+		int flag=0;
+		temp=temp->next;
+		while(temp->right!=null)
+		{
+			if(temp->d==d)
+			{
+				temp->left->right=temp->right;
+				temp->right->left-temp->left;
+				free(temp);
+				temp=null;
+				flag=1;
+				break;
+				printf("element deleted\n");
+			}
+			temp=temp->right;
+		}
+		if(flag==0)
+		{
+			if(temp->d==d)
+			{
+				temp->left=null;
+				tail=temp->left;
+				free(temp);
+				temp=null;
+				printf("element deleted\n");
+			}
+		}
+			
+	}
 }
 
 int search(int d){
 	//returns the position of the element d
 	int pos = 0;
-	return pos;
+	node* temp;
+	temp=head;
+	while(temp->right!=null);
+	{
+		pos++;
+		if(temp->d==d)
+		{
+			return pos;
+		}
+		temp=temp->right;
+	}
+	if(temp->d==d)
+		return (pos+1);
+	else
+		return(-1);
+	
 }
 
 void traverse(int flg){
 	//traverses the list from head to tail if flg=0
 	//traverses the list from tail to head if flg=1
+	node* temp;
+	temp=head;
+	
+	if(flg==0)
+	{
+		temp=head;
+		printf("List traversal in forward direction is:\n");
+		while(temp->right!=null)
+		{
+			printf("%d\t",temp->d);
+			temp=temp->right;
+		}
+		printf("%d\t",temp->d);
+		
+	}
+	if(flg==1)
+	{
+		temp=tail;
+		printf("List traversal in backward direction is:\n");
+		while(temp->left!=null)
+		{
+			printf("%d\t",temp->d);
+			temp=temp->left;
+		}
+		printf("%d\t",temp->d);
+	}
+	else
+	{
+		printf("Invalid option chosen\n");
+	}
+		
 }
 
 int main(){
@@ -123,9 +211,13 @@ int main(){
 				}
 				break;
 			case 3:
+				printf("Enter the element to be deleted:\n");
+				scnaf("%d",&d);
 				delete(d);
 				break;
 			case 4:
+				printf("Enter the element you want to search:\n");
+				scanf("%d",&d);
 				int pos = search(d);
 				break;
 			case 5:
